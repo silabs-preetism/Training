@@ -1,0 +1,30 @@
+
+UPDATED : 05/04/2018
+
+ Check the revision history and integration guidelines here:
+http://192.168.1.215:8090/display/IPMU40GF/iPMU+Structures+--+Definition
+
+Revision History:
+
+Revision : 1p18
+
+UPDATED : 08/10/2018
+
+CHANGES:
+
+1) Added new structures:
+
+
+2) Updated address on structures:
+
+   ipmu_common_config
+
+3) Modified the structure definitions:
+
+   NONE
+
+4) CHECK The new integration guidelines
+    
+  http://192.168.1.215:8090/display/RS9116/Release+V1.19+Porting+Guide#ReleaseV1.19PortingGuide-iPMUChanges
+
+

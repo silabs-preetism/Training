@@ -1,0 +1,42 @@
+Pin Configurations:
+-------------------
+
+1. Connect RS9116 SPI Header PIN-2 to SPI header of RS12100 companion card PIN-7 for CS.
+2. Connect RS9116 SPI Header PIN-3 to SPI header of RS12100 companion card PIN-3 for GND.
+3. Connect RS9116 SPI Header PIN-4 to SPI header of RS12100 companion card PIN-4 for VCC.
+4. Connect RS9116 SPI Header PIN-5 to SPI header of RS12100 companion card PIN-8 for CLK.
+5. Connect RS9116 SPI Header PIN-7 to SPI header of RS12100 companion card PIN-1 for MOSI.
+6. Connect RS9116 SPI Header PIN-8 to SPI header of RS12100 companion card PIN-9 for MISO.
+7. Connect RS9116 SPI Header PIN-9 to SPI header of RS12100 companion card PIN-5 for INT.
+
+
+For GPIO based powersave use the following pin configurations:
+--------------------------------------------------------------
+
+a) For ULP PowerSave:
+---------------------
+1.RS12100 Connect companion card UULP_2 to UULP_2 of RS9116 module (Input Pin from host).
+2.RS12100 Connect companion card UULP_3 to UULP_3 of RS9116 module (Output Pin to host).
+
+b) For LP PowerSave:
+---------------------
+1.RS12100 Connect companion card UULP_2 to ULP_5 of RS9116 module (Input Pin from host).
+2.RS12100 Connect companion card UULP_3 to UULP_3 of RS9116 module (Output Pin to host).
+
+Please find steps to use RS12100 with Keil project:
+-------------------------------------------------
+
+1. Load firmware in RS9116 module through kermit.
+2. Connect SPI header to module (make sure connections are proper) and connect
+power supply to the power port
+3. In keil IDE load the required example and include the rsi_wlan_config.h
+file path of that particular example only(i.e., remove any of the unused
+rsi_wlan_config.h paths).
+4. Do changes in rsi_config.h (if required) and compile it.
+5. Load the application from keil and run it.
+
+Note:
+=====
+1. For Active High firmware image (LOAD_NWP_FW) configure interrupt mode to rising edge (Ex:GPIO_MODE_IT_RISING) in main.c. 
+2. For Active Low firmware image (LOAD_DEFAULT_NWP_FW_ACTIVE_LOW) configure interrupt mode to falling edge (Ex:GPIO_MODE_IT_FALLING) in main.c. 
+

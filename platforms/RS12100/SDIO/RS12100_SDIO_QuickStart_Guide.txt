@@ -1,0 +1,42 @@
+Pin Configurations:
+-------------------
+
+1. SMIH_CLK                 GPIO_25
+2. SMIH_CMD                 GPIO_26
+3. SMIH_D0                  GPIO_27
+4. SMIH_D1                  GPIO_28
+5  SMIH_D2                  GPIO_29
+6. SMIH_D3                  GPIO_30
+
+For Reset Connect RS12100 companion card ULP_GPIO6 to RST_PS of RS9116 module  
+
+For GPIO based powersave use the following pin configurations:
+--------------------------------------------------------------
+
+a) For ULP PowerSave:
+---------------------
+1.RS12100 Connect companion card UULP_2 to UULP_2 of RS9116 module (Input Pin from host).
+2.RS12100 Connect companion card UULP_3 to UULP_3 of RS9116 module (Output Pin to host).
+
+b) For LP PowerSave:
+---------------------
+1.RS12100 Connect companion card UULP_2 to ULP_5 of RS9116 module (Input Pin from host).
+2.RS12100 Connect companion card UULP_3 to UULP_3 of RS9116 module (Output Pin to host).
+
+Please find steps to use RS12100 with Keil project:
+-------------------------------------------------
+
+1. Load firmware in RS9116 module through kermit.
+2. Connect SDIO header to module (make sure connections are proper) and connect
+power supply to the power port
+3. In keil IDE load the required example and include the rsi_wlan_config.h
+file path of that particular example only(i.e., remove any of the unused
+rsi_wlan_config.h paths).
+4. Do changes in rsi_wlan_config.h (if required) and compile it.
+5. Load the application from keil and run it.
+6. For 1.8v power supply enable SDIO_VCC_1P8_V preprocessor define.
+7. SAPI driver uses Data pin 1 or SMIH_D1 or GPIO_28 as SDIO interrupt line. User should configure to read the status of the GPIO in Hardware Abstraction Porting (HAP) layer using the below mentioned APIs.
+	a) rsi_hal_get_gpio()
+	b) rsi_hal_intr_pin_status()
+	Note: 1. The above mentioned APIs, should return "0" for card interrupts.
+	      2. User can read the GPIO status, once after SDIO enumeration is completed.
